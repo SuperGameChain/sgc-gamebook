@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    div.gallery {
+    float: left;
+    margin-left: -20px;
+    margin: 6px;
+    background-color: white;
+    width: 210px;
+    height: 360px;
+    margin-top: 20px;
+}
+div.gallery img {
+    width: 100%;
+}
+
+div.desc {
+    padding: 0px;
+    text-align: left;
+}
+div.gallery:hover {
+    border: 1px solid #d9d9d9;
+}
+<
+</style>
+</head>
+<body style="background-color:#d9d9d9;">
+     {% for cat in cats %}
+      <div class="gallery">
+                <div class="desc">
+                <a href="/cat/{{cat.id}}" style="text-decoration:none">
+                    <img  src="/static/images/{{cat.name}}.jpg" style="height:250px;width:210px; display:block;" alt="Cat">
+                        <p style="color:black; font-size:20px; margin: 5px; padding-left: 10px" >{{cat.name}}</p>
+                        <p style="color:black;font-size:20px; margin: 0px; padding-left: 14px"><img src="/static/images/logo_sgc.png" style="height:20px;width:20px">  {{cat.price}}</p>
+                         <p style="color:black; font-size:15px; margin: 5px; padding-left: 10px">Owner: {{cat.owner}}</p>
+                    </div>
+                </a>
+                </div>
+            {% endfor %}
+        </div>
+  <br>
+    {% if not g.user %}
+    <h3 style="color:#990000;">Please sign in!</h3>
+        <form action="{{url_for('login')}}" class="form-inline my-2 my-lg-0">
+            <input name="username" class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="Search" autofocus>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign in</button>
+        </form>
+
+    {% endif %}
+    <br>
+    </body>
+</html>
+{% endblock %}
+<!--     <div>
+        <h2>Cats</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">cat name</th>
+                    <th scope="col">price</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for cat in cats %}
+                    <tr>
+                        <th scope="col"><a href='/cat/{{cat.id}}'>{{cat.id}}<a></th>
+                        <th scope="col"><a href='/cat/{{cat.id}}'>{{cat.name}}<a></th>
+                        <th scope="col"><a href='/cat/{{cat.id}}'>{{cat.price}}<a></th>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <div> -->
+    

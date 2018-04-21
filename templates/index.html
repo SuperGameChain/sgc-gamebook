@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <div class="jumbotron text-center">
+        <h1>WELCOME</h1>
+        <!-- <h2>{{g.user}}</h2> -->
+        <p class="lead">Welcome to the SGC Gamebook!</p>
+    </div>
+
+    <h2>Users</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <th scope="col">{{user.id}}</th>
+                    <th scope="col">{{user.username}}</th>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    {% if not g.user %}
+    <h3 style="color:#990000;">Please sign in!</h3>
+        <form action="{{url_for('login')}}" class="form-inline my-2 my-lg-0">
+            <input name="username" class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="Search" autofocus>
+      <input name="password" class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Search" autofocus>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign in</button>
+        </form>
+        <form action="{{url_for('register')}}" class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Create account</button>
+        </form>
+    
+  
+    {% else %}
+        <div class="inline-block text-center row" align="center">
+            <form action="{{url_for('market')}}" class="form-inline my-2 my-lg-0">
+                <div class="form-group mx-auto col-md-auto">
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Market</button>
+                </div>
+            </form>
+            <form action="{{url_for('logout')}}" class="form-inline my-2 my-lg-0">
+                <div class="form-group mx-auto col-md-auto">
+                    <button class="btn btn-danger my-2 my-sm-0" type="submit">Logout</button>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+    <br>
+
+{% endblock %}

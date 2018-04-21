@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <!-- Modal -->
+    {% include 'includes/_modal.html' %}
+    <script type="text/javascript">
+        function switchModalColor() {
+            $('#modal-header-tbc').toggleClass('myRedModal');
+            $('#modal-footer-tbc').toggleClass('myRedModal');
+            $('#modal-text-tbc').text('You Lost!')
+        }
+    </script>
+
+    <div class="container text-center">
+        <h1>Hangman</h1>
+
+        <br>
+        <h1>{{user.cur_word}}</h1>
+
+        <hr width="700">
+        {% if not user.finished %}
+            <form method="post" id="letter-form" class="form-inline vspace my-2 my-lg-0 mx-auto">
+                <div class="form-group mx-auto input-group" style="width: 215px;">
+                    <input name="letter" class="form-control mr-sm-2" type="text" placeholder="Try Letter" maxlength="1" autofocus>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Try</button>
+                </div>
+            </form>
+
+        {% else %}
+            {% if user.win %}
+                <!-- green modal -->
+                <body onload="popModal();"></body>
+                <h2>You Won!</h2>
+
+            {% else %}
+                <!-- red modal -->
+                <script type="text/javascript">
+                window.onload =  function(){
+                    switchModalColor();
+                    popModal();
+                    switchModalColor();
+                };
+                </script>
+                <h3>You Lost!</h3>
+                <h3>The word is: <font size="100%" font-style="italic" face="New Century Schoolbook, TeX Gyre Schola, serif">{{user.cur_word}}</font></h3>
+            {% endif %}
+
+            <form action="{{url_for('play',user_id=user.id)}}" class="form-inline my-2 my-lg-0">
+                <div class="form-group mx-auto">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Play Again</button>
+                </div>
+            </form>
+
+        {% endif %}
+        <br>
+    </div>
+
+{% endblock %}

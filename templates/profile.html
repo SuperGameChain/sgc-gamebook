@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <!-- Modal -->
+    {% include 'includes/_modal.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    div.gallery {
+    float: left;
+    margin: 5px;
+    background-color: white;
+    width: 210px;
+    height: 360px;
+}
+div.gallery img {
+    width: 100%;
+}
+
+div.desc {
+    padding: 0px;
+    text-align: left;
+}
+div.gallery:hover {
+    border: 1px solid #d9d9d9;
+}
+
+</style>
+</head>
+<div style="background-color: white; height: 50px;line-height: 50px; width: 1150px; margin-left: -20px" >
+      {% if g.user %}
+        <a  href="/market" style="color:black; font-size: 16px; padding-left: 20px">Total games:</a>
+        <a href="/leaderboard" style="color:black; font-size: 16px; padding-left: 20px" >Total Game Value:  {{user.balance}} 
+        <img src="/static/images/logo_sgc.png" style="height:20px;width:20px"></a> </a>
+        <a href="/gamerboard" style="color:black; font-size: 16px; padding-left: 20px">SGC Balance: {{user.balance}}
+        <img src="/static/images/logo_sgc.png" style="height:20px;width:20px"></a>
+      {% endif %}
+  </div>
+<body style="background-color:#d9d9d9;">
+            {% for cat in assets %}
+                <div class="gallery" style=" margin-top: 20px">
+                <div class="desc">
+                <a href="/cat/{{cat.id}}" style="text-decoration:none">
+                    <img src="/static/images/{{cat.name}}.jpg" style="height:225px;width:100%; display:block;" alt="Cat">
+  <p style="color:black; font-size:20px; margin: 5px; padding-left: 10px" >{{cat.name}}</p>
+                        <p style="color:black;font-size:20px; margin: 0px; padding-left: 14px"><img src="/static/images/logo_sgc.png" style="height:20px;width:20px">  {{cat.price}}</p>
+                         <p style="color:black; font-size:20px; margin: 5px; padding-left: 10px" >My share</p>
+                        {% for user in users %}
+                         <p style="color:black; font-size:15px; margin: 5px; padding-left: 10px">{{user.username}}</p>
+                         {% endfor %}
+                </a>
+                </div>
+                </div>
+            {% endfor %}
+    </div>
+    <!--
+    <div class="container text-center">
+        <form action="{{url_for('createAsset')}}" class="form-inline my-2 my-lg-0">
+            <button class="btn btn-info my-2 my-sm-0 text" type="submit">Create Asset</button>
+        </form> -->
+</body>
+{% endblock %}

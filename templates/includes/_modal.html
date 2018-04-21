@@ -1,0 +1,33 @@
+<style src="/static/_modal.css"></style>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div id="modal-header-tbc" class="modal-header">
+      <h2 align="left">-</h2>
+      <span class="close" data-dismiss="modal">&times;</span>
+    </div>
+    <div class="modal-body">
+      <p id="modal-text-tbc">You won!</p>
+    </div>
+    <div id="modal-footer-tbc" class="modal-footer">
+      <h3 align="left">-</h3>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  // hide modal with esc
+  document.onkeydown = function (event) {
+    event = event || window.event;
+    if (event.keyCode == 27) {
+      $('#myModal').modal('hide');
+    }
+  }
+  // pop modal
+  function popModal() {
+    var v=$('#myModal').appendTo("body").modal('show');
+    $('#myModal').data('bs.modal').$backdrop.css('background-color','red');
+    eval(v);
+  }
+</script>

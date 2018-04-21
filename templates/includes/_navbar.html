@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+ul {
+  
+	display: flex;
+	align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    overflow: hidden;
+    text-align: center;
+    height: 80px;
+    width: 1150px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: -80px;
+    background-color: #27334e;
+    position: sticky;
+    top: 20px;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display:block;
+    color:#828282;
+    text-align: center;
+    font-size: 18px;
+    padding: 20px 10px;
+    text-decoration: none;
+
+}
+
+
+li a:hover {
+    background: #27334e;
+  color:white;
+  text-decoration:none;
+}
+li a:current {
+    background: #27334e;
+  color:white;
+  text-decoration:none;
+}
+ 
+.bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: white;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-8px, -8px);
+}
+
+ .current{
+	color: white;
+}
+</style>
+</head>
+
+<body>
+
+<center>
+  <nav>
+       <ul>         
+         <li><img src="/static/images/logo_sgc.png"></li>
+         <li><b><p style="font-size:30px; color: white; padding-left : 10px; margin-top :10px; text-align:center">SGC</p></b></li>
+          <li><a class="current" href="/" ><li style="margin-left: 15px" >Gamebook</a></li>
+      {% if g.user %}
+<!--         <li class="nav-item active">
+          <a class="nav-link" href="/play">Play <span class="sr-only">(current)</span></a>
+        </li> -->
+        <li ><a class="current" href="/gamerboard" > Gamerbook</a></li>
+       <li><a class="current" href="/market">Influencerbook</a></li>
+       <li><a class="current" href="/leaderboard">Investorbook</a></li>
+        
+      {% endif %}
+      {% if not g.user %}
+      <a href="/">Sign in</a>
+      {% else %}
+      <a href="/profile"><img src="/static/images/logo_user.png" style="height:50px; width:50px; margin-left: 360px" align="right"></a>
+      {% endif %}
+   <a href="/logout">
+  <div class="container" onclick="myFunction(this)" align="right">
+  <div class="bar1"></div>
+  <div class="bar2"></div>
+  <div class="bar3"></div></a>
+</ul>
+</nav>
+
+   <span>
+  <div style="background-color: white; height: 50px; line-height: 50px; width: 1150px; margin-top: -20px; text-align: left;box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.2), 0 0.5px 0 0 rgba(0, 0, 0, 0.19);">
+      {% if g.user %}
+        <a  href="/market" style="color:black; font-size: 16px; padding-left: 20px">Market</a>
+        <a href="/leaderboard" style="color:black; font-size: 16px; padding-left: 20px" >Leaderboard</a>
+        <a href="/gamerboard" style="color:black; font-size: 16px; padding-left: 20px">Gamerboard</a>
+        <a href="/profile" style="color:black; font-size: 16px; padding-left: 20px">My Games</a>
+      {% endif %}
+  </div>
+  </span>
+
+
+
+</center>
+
+<script>
+function myFunction(x) {
+    x.classList.toggle("change");
+}
+</script>
+</div>
+</body>
+
+</html>
+
+
+

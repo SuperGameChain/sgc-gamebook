@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <!-- Modal -->
+    {% include 'includes/_modal.html' %}
+
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+            <li style="color:red">{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+    <div class="container text-center">
+        <form class="needs-validation" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="username">Username</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" class="form-control" name="username" placeholder="Username" required>
+                <div class="invalid-feedback" style="width: 50%;">
+                  Enter username.
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="assetprice">Password</label>
+              <input type="password" class="form-control" name="password" placeholder="Password" required>
+              <div class="invalid-feedback">
+                Enter password.
+              </div>
+            </div>
+
+            
+            <hr class="mb-4">
+
+            <!-- <h4 class="mb-3">Payment</h4> -->
+
+            <!-- <hr class="mb-4"> -->
+            <button class="btn btn-primary btn-lg btn-block" type="submit" value="upload">Register</button>
+          </form>
+
+    </div>
+
+   
+
+{% endblock %}

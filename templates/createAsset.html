@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <!-- Modal -->
+    {% include 'includes/_modal.html' %}
+
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+            <li style="color:red">{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+    <div class="container text-center">
+        <form class="needs-validation" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="username">Name</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">@</span>
+                </div>
+                <input type="text" class="form-control" id="assetname" name="assetname" placeholder="Name" required>
+                <div class="invalid-feedback" style="width: 100%;">
+                  Your username is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="assetprice">Price</label>
+              <input type="text" class="form-control" id="assetprice" name="assetprice" placeholder="$ 1234" required>
+              <div class="invalid-feedback">
+                Please enter the price.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="address">Description</label>
+              <input type="text" class="form-control" id="assetdescription" name="assetdescription" placeholder="Enter a description" style="height:200px">
+              <div class="invalid-feedback">
+                Please enter a description.
+              </div>
+            </div>
+
+            <hr class="mb-4">
+            <div class="custom-control custom-checkbox">
+                <!-- <form method="post"> -->
+                <input type="file" name="file" id="file">
+                <!-- <input type="submit"> -->
+                <!-- </form> -->
+            </div>
+
+            <hr class="mb-4">
+
+            <!-- <h4 class="mb-3">Payment</h4> -->
+
+            <!-- <hr class="mb-4"> -->
+            <button class="btn btn-primary btn-lg btn-block" type="submit" value="upload">Continue to checkout</button>
+          </form>
+
+    </div>
+
+   
+
+{% endblock %}

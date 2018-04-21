@@ -1,0 +1,112 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <!-- Modal -->
+    {% include 'includes/_modal.html' %}
+<body style="background-color:#d9d9d9;">
+    <div class="container" style="background-color: white; margin-top: 20px">
+        <img src="/static/images/{{cat.name}}.jpg" width="420" height="500" align="left">
+        <h1 style='color:grey' align="left"><font size = "6">{{cat.name}}</h1>
+            <h1 >Description</h1>
+            <p >{{cat.description}}</p>
+            <form class="form-inline my-2 my-lg-0" method="post">
+                <input type="text" name="newdescription" placeholder="Change description(255 char limit)">
+                <button class="btn btn-primary my-2 my-sm-0" type="submit">submit</button>
+            <form>
+           {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+                <li style="color:red">{{ message }}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
+
+
+            <h1 style='color:red'><font size = "6">Current Bid: ${{cat.price}}</h1>
+            <h1><font size = "6">Owner: {{cat.owner}}</h1>
+<!--             <button class="btn btn-outline-success my-2 my-sm-0" href="market">Back</button> -->
+            <div class="btn-group">
+                <button class=
+                {% if vote.like <= 0%} 
+                "btn btn-outline-primary"
+                {% else %}
+                "btn btn-primary"
+                {% endif %}
+                name="like" type="submit" href="#"><span class="oi oi-thumb-up"></span> <span class="badge badge-pill align-text-bottom">{{vote.count_like}}</span></button>
+                <button class=
+                {% if vote.want_to_play <= 0%} 
+                "btn btn-outline-primary"
+                {% else %}
+                "btn btn-primary"
+                {% endif %}
+                name="want_to_play" href="#"><span class="oi oi-caret-right"></span> <span class="badge badge-pill align-text-bottom">{{vote.count_want_to_play}}</span></button>
+                <button href="#" class="btn btn-outline-primary">Comment</button>
+            </div>
+
+
+            {% if g.user == cat.owner %}
+            {% else %}
+            <div class="form-group center">
+                <form class="form-inline my-2 my-lg-0" method="post">
+                    <input name="bidprice" class="form-control mr-sm-2" type="text" placeholder="place a price" aria-label="Search" autofocus>
+                    <button class="btn btn-outline-success my-2 my-sm-0" name="bid" type="submit">Place bid</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" name="bidhistory" type="submit">History bid</button>
+                </form>
+            </div>
+            {% for m in message %}
+                   <div class="card-body">
+                       <h1 style='color:black'><font size = "3">: {{m.message}}</h1>
+                    </div>
+                </a>
+             {% endfor %}
+            <form action ="" method = "post">
+            <label> Comment:<br><textarea cols="35" rows="5" name="message"></textarea></label><br>
+            <input type="submit" name="submit_message" value="Submit">
+            </form>
+            
+            {% endif %}
+            </div>
+               </div>
+   </body>
+{% endblock %}
+    <!--</div>
+    <br>
+    <div class="container jumbotron">
+    <section>
+        <div class="comment_block">
+         <div class="create_new_comment">
+            <div class="user_avatar">
+                <img src="https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg">
+            </div>
+            <div class="input_comment">
+                <input type="text" placeholder="Join the conversation..">
+            </div>
+         </div>
+         <div class="new_comment">
+            <ul class="user_comment">
+            <li>
+                <div class="user_avatar">
+                    <img src="https://s3.amazonaws.com/uifaces/faces/twitter/dancounsell/73.jpg">
+                </div>
+                <div class="comment_body">
+                    <p>Gastropub cardigan jean shorts, kogi Godard PBR&B lo-fi locavore. Organic chillwave vinyl Neutra. Bushwick Helvetica cred freegan, crucifix Godard craft beer deep v mixtape cornhole Truffaut master cleanse pour-over Odd Future beard. Portland polaroid iPhone.</p>
+                </div>
+            </li>
+            <li>
+                <div class="user_avatar">
+                    <img src="https://s3.amazonaws.com/uifaces/faces/twitter/ManikRathee/73.jpg">
+                </div>
+                <div class="comment_body">
+                    <p><div class="replied_to"><p><span class="user">John Smith:</span>Gastropub cardigan jean shorts, kogi Godard</p></div></p>
+                </div>
+            </li>
+            </ul>
+         </div>
+        </div>
+    </section>
+    </div>
+
+   
+
+
